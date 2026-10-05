@@ -1,27 +1,22 @@
-# QuillAI backend
+# QuillAI — Backend API
+A high-performance Express and MongoDB API powering QuillAI. Featuring secure JWT authentication, history persistence, and real-time AI response generation powered by Google Gemini streamed directly over Server-Sent Events (SSE).
 
-Express + MongoDB (Mongoose) API with JWT auth and Gemini streaming over Server-Sent Events.
+# Key Features
+Real-Time AI Streaming: Uses Server-Sent Events (SSE) to stream Gemini-generated responses to the client instantly.
 
-## Run locally
-```bash
-npm install
-cp .env.example .env   # fill in MONGO_URI, JWT_SECRET, GEMINI_API_KEY
-npm run dev
-```
+Authentication & Authorization: Role-based access control and session management via JSON Web Tokens (JWT) and bcrypt password hashing.
 
-## Push to GitHub
-```bash
-git init && git add . && git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/<your-username>/quillai-backend.git
-git push -u origin main
-```
+Prompt & History Management: Save, fetch, and purge user generation history directly in MongoDB.
 
-## Deploy on Render
-1. MongoDB Atlas: create a free cluster, a database user, and allow `0.0.0.0/0` under Network Access.
-2. Render: **New > Web Service**, connect the `quillai-backend` repo.
-3. Build command `npm install`, start command `npm start`.
-4. Add environment variables from `.env.example` (`CLIENT_URL` = your Netlify URL, no trailing slash).
-5. Copy the Render URL (for example `https://quillai-backend.onrender.com`) into the frontend's `VITE_API_URL`.
+Deployment-Ready Setup: Pre-configured for seamless hosting on platforms like Render and MongoDB Atlas with built-in CORS controls.
 
-API: `POST /api/auth/register`, `POST /api/auth/login`, `GET /api/auth/me`, `POST /api/generate/stream`, `GET /api/generate/history`, `DELETE /api/generate/:id`.
+# Tech Stack
+Runtime: Node.js
+
+Framework: Express.js
+
+Database: MongoDB with Mongoose ODM
+
+AI Engine: Google Gemini API (@google/generative-ai)
+
+Authentication: JSON Web Tokens (JWT) & bcrypt
